@@ -9,9 +9,8 @@ import Modal from './modal/Modal';
 
 const Hero = () => {
 	const { register, formState: { errors }, handleSubmit } = useForm();
-	const [ success, setSuccess ] = useState(false);
-	const [ show, setShow ] = useState(false);
-
+	// const [ success, setSuccess ] = useState(false);
+	// const [ show, setShow ] = useState(false);
 
 	const envoi = async (data) => {
 		console.log('==============ENVOIE=======');
@@ -26,26 +25,22 @@ const Hero = () => {
 			.then((response) => {
 				console.log(response.data);
 				window.location.reload(false);
-               
-                    // handleShow();
-               
+				// handleShow();
 			})
 			.catch((e) => {
 				console.log(e.response);
 			});
-    
-
 	};
 
-	const handleClose = () => {
-		if (success) {
-			setShow(false);
-		} else {
-			setShow(false);
-		}
-	};
+	// const handleClose = () => {
+	// 	if (success) {
+	// 		setShow(false);
+	// 	} else {
+	// 		setShow(false);
+	// 	}
+	// };
 
-	const handleShow = () => setShow(true);
+	// const handleShow = () => setShow(true);
 
 	return (
 		<div className="hero">
@@ -146,7 +141,7 @@ const Hero = () => {
 										{/* <p>{result}</p>  */}
 									</div>
 								</form>
-								<Modal
+								{/* <Modal
 									handleClose={handleClose}
 									show={show}
 									title={
@@ -167,7 +162,7 @@ const Hero = () => {
 									) : (
 										"Une erreur s'est produite, veuillez réessayer."
 									)}
-								</Modal>
+								</Modal> */}
 							</div>
 						</div>
 					</div>
