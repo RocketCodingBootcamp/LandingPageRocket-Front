@@ -25,7 +25,7 @@ const Hero = () => {
 			)
 			.then((response) => {
 				console.log(response.data);
-				// window.location.reload(false);
+				window.location.reload(false);
                
                     // handleShow();
                
