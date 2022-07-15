@@ -8,6 +8,9 @@
   background: #014AAD;
 
 }
+* div{
+  background-color: transparent;
+}
 :root {
   --primary: #6948ff;
   --secondary: #553bcb;

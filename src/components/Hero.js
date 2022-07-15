@@ -6,12 +6,14 @@ import { useForm } from 'react-hook-form';
 import { data } from 'jquery';
 import { ErrorMessage } from '@hookform/error-message';
 import Modal from './modal/Modal';
-
+import CookieConsent from 'react-cookie-consent';
 const Hero = () => {
 	const { register, formState: { errors }, handleSubmit } = useForm();
-	const [ success, setSuccess ] = useState(false);
-	const [ show, setShow ] = useState(false);
+	//const [ success, setSuccess ] = useState(false);
+	//const [ show, setShow ] = useState(false);
 
+    const [isOpen, setIsOpen] = useState(false)
+	
 
 	const envoi = async (data) => {
 		console.log('==============ENVOIE=======');
@@ -37,15 +39,15 @@ const Hero = () => {
 
 	};
 
-	const handleClose = () => {
-		if (success) {
-			setShow(false);
-		} else {
-			setShow(false);
-		}
-	};
+	//const handleClose = () => {
+	//	if (success) {
+	//		setShow(false);
+	//	} else {
+	//		setShow(false);
+	//	}
+	//};
 
-	const handleShow = () => setShow(true);
+	//const handleShow = () => setShow(true);
 
 	return (
 		<div className="hero">
@@ -140,14 +142,19 @@ const Hero = () => {
 											name="telephone"
 											render={({ message }) => <p id="Message_erreur">{message}</p>}
 										/>
-
-										<button type="submit">ENVOYER</button>
-
+										
+										  
+										<button type="submit" className='envoyer-btn' onClick={() => setIsOpen(true)}>ENVOYER</button>
+										
 										{/* <p>{result}</p>  */}
 									</div>
 								</form>
-								<Modal
-									handleClose={handleClose}
+								
+								<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                                  Vos coordonnées sont enregistrées et une réponse vous sera envoyée dans quelques jours .
+                                </Modal>
+								{/*<Modal
+									//handleClose={handleClose}
 									show={show}
 									title={
 										<div>
@@ -167,7 +174,7 @@ const Hero = () => {
 									) : (
 										"Une erreur s'est produite, veuillez réessayer."
 									)}
-								</Modal>
+									</Modal>*/}
 							</div>
 						</div>
 					</div>
@@ -176,8 +183,22 @@ const Hero = () => {
 					</div>
 				</div>
 			</div>
+			{/*cookies banner*/}
+			<div>
+			<CookieConsent
+               enableDeclineButton
+               buttonText="J'accepte"
+               declineButtonText="Je refuse"
+      >
+        Ce site utilise des cookies pour améliorer votre expérience.
+      </CookieConsent>
+            </div>
+			
 		</div>
+		
 	);
+	
 };
+
 
 export default Hero;
