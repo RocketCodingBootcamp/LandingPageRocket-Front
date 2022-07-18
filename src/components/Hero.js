@@ -13,6 +13,24 @@ const Hero = () => {
 	//const [ show, setShow ] = useState(false);
 
     const [isOpen, setIsOpen] = useState(false)
+	const[nom,SetNom]= useState('')
+    const [prenom, setprenom] = useState('')
+    const [email, setemail] = useState('')
+	const [tel, settel] = useState('')
+	const validate=()=>{
+		let user={nom:'',prenom:'',email:'',tel:''}
+		user.nom=nom
+		user.prenom=prenom
+		user.email=email
+		user.tel=tel
+		console.log(user);
+		
+		}
+		
+
+		
+	
+
 	
 
 	const envoi = async (data) => {
@@ -87,6 +105,9 @@ const Hero = () => {
 												shouldUnregister: true
 											})}
 											placeholder="Nom "
+											onChange={(e)=>{
+												SetNom(e.target.value)
+											}}
 										/>
 
 										{/** Show an error message under the input if the field does not respect validation rules */}
@@ -102,6 +123,9 @@ const Hero = () => {
 												required: '* Ce champs est requis'
 											})}
 											placeholder="Prénom "
+											onChange={(e)=>{
+											setprenom(e.target.value)
+											}}
 										/>
 
 										<ErrorMessage
@@ -120,6 +144,9 @@ const Hero = () => {
 												}
 											})}
 											placeholder="Email "
+											onChange={(e)=>{
+												setemail(e.target.value)
+											}}
 										/>
 										<ErrorMessage
 											errors={errors}
@@ -136,6 +163,9 @@ const Hero = () => {
 												}
 											})}
 											placeholder="Telephone "
+											onChange={(e)=>{
+												settel(e.target.value)
+											}}
 										/>
 										<ErrorMessage
 											errors={errors}
@@ -143,16 +173,21 @@ const Hero = () => {
 											render={({ message }) => <p id="Message_erreur">{message}</p>}
 										/>
 										
+										
 										  
-										<button type="submit" className='envoyer-btn' onClick={() => setIsOpen(true)}>ENVOYER</button>
+										<button  type="submit" className='envoyer-btn' onClick={() =>{ validate()
+										setIsOpen(true)}}>ENVOYER</button>
 										
 										{/* <p>{result}</p>  */}
 									</div>
+									
 								</form>
 								
-								<Modal open={isOpen} onClose={() => setIsOpen(false)}>
-                                  Vos coordonnées sont enregistrées et une réponse vous sera envoyée dans quelques jours .
-                                </Modal>
+								{ isOpen && !nom && !prenom && !email && !tel ? <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+								Veuillez remplir tous les champs.
+                                </Modal> :<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+								Vos coordonnées sont enregistrées et un message vous sera envoyé dans quelques minutes ! 
+                                </Modal> } 
 								{/*<Modal
 									//handleClose={handleClose}
 									show={show}
